@@ -21,10 +21,7 @@ if (process.env.NODE_ENV === 'development') {
     })
     .then(() => console.log('Local DB Connection Successful!'));
 } else {
-  const DB = process.env.DATABASE.replace(
-    '<PASSWORD>',
-    process.env.DATABASE_PASSWORD
-  );
+  const DB = process.env.DATABASE;
  
   mongoose
     .connect(DB, {
