@@ -11,6 +11,12 @@ module.exports = {
     exchanges: Joi.array().required(),
   },
 
+  sendMessage:{ 
+  name: Joi.string().required(),
+  email: Joi.string().required(),
+  message: Joi.string().required(),
+  },
+
   updateCoin: {
     description: Joi.string(),
     website: Joi.string(),

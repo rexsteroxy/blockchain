@@ -19,7 +19,19 @@ router.get('/', (req, res) => {
     validate(validator.coinListing),
     coinController.createCoin
   );
+//////
+  router.post(
+    '/sendMessage',
+    validate(validator.sendMessage),
+    coinController.sendMessage
+  );
 
+  router.get(
+    '/getMessages',
+    coinController.getMessages
+  );
+
+///
   router.get(
     '/getAllListedCoins',
     coinController.listAllCoins

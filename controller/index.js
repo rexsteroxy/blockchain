@@ -1,6 +1,8 @@
 const Coin = require("../model/Coin");
 const CoinPrice = require("../model/CoinPrice");
 
+const Message = require("../model/Message");
+
 exports.createCoin = async (req, res, next) => {
   try {
     const { name, price, description, website, logoUrl, exchanges } = req.body;
@@ -30,6 +32,48 @@ exports.createCoin = async (req, res, next) => {
     });
   }
 };
+///
+exports.sendMessage = async (req, res, next) => {
+  try {
+    const { name, email, message } = req.body;
+
+    const _message = await Message.create({
+      name, email, message
+    });
+
+   
+    return res.status(201).json({
+      status: true,
+      _message,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      message: error.message,
+    });
+  }
+};
+
+exports.getMessages = async (req, res, next) => {
+  try {
+    const allMessages = await Message.find();
+
+    const count = allMessages.length;
+
+    return res.status(201).json({
+      status: true,
+      count,
+      allMessages,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      message: error.message,
+    });
+  }
+};
+////
+
 
 exports.listAllCoins = async (req, res, next) => {
   try {
